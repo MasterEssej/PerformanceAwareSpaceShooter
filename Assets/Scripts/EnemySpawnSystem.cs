@@ -17,8 +17,6 @@ public partial class EnemySpawnSystem : SystemBase
     protected override void OnStartRunning()
     {
         _enemyPrefab = GetSingleton<EnemyPrefab>().Value;
-        EntityManager.AddComponent<MovementComponent>(_enemyPrefab);
-        EntityManager.AddComponent<EnemyComponent>(_enemyPrefab);
         _random.InitState(10);
     }
 

@@ -14,7 +14,6 @@ public partial class ShootingSystem : SystemBase
     {
         base.OnStartRunning();
         bulletPrefab = GetSingleton<BulletPrefab>().Value;
-        EntityManager.AddComponent<ShootingComponent>(bulletPrefab);
         _playerEntity = World.GetExistingSystem<PlayerSpawnSystem>().player;
     }
 
@@ -35,13 +34,13 @@ public partial class ShootingSystem : SystemBase
             Translation newTranslation = new() { Value = spawnPos };
             EntityManager.SetComponentData<Translation>(bullet, newTranslation);
 
-            ShootingComponent bulletData = new() { direction = newDirection, speed = 20, maxAge = 3, age = 0 };
-            EntityManager.SetComponentData<ShootingComponent>(bullet, bulletData);
+            BulletComponent bulletData = new() { direction = newDirection, speed = 20, damage = 5 };
+            EntityManager.SetComponentData<BulletComponent>(bullet, bulletData);
         }
         
-        Entities.ForEach((ref ShootingComponent shootingComponent, ref Translation translation) =>
+        Entities.ForEach((ref BulletComponent bulletComponent, ref Translation translation) =>
         {
-            translation.Value += shootingComponent.direction * shootingComponent.speed * deltaTime;
+            translation.Value += bulletComponent.direction * bulletComponent.speed * deltaTime;
         }).Schedule();
 
 

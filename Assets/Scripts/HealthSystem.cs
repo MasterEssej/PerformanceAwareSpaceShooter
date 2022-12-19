@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 
-public class HealthSystem : ComponentSystem
+public partial class HealthSystem : SystemBase
 {
     protected override void OnUpdate()
-    {/*
-        Entities.ForEach((ref HealthComponent healthComponent, ref PlayerComponent playerComponent) =>
+    {
+        Entities.WithStructuralChanges().ForEach((Entity entity, ref HealthComponent healthComponent) =>
         {
-            healthComponent.currentHealth -= 1;
-        });*/
-
+            if(healthComponent.currentHealth <= 0)
+            {
+                EntityManager.DestroyEntity(entity);
+            }
+        }).Run();
     }
 }

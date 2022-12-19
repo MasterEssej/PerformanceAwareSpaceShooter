@@ -9,10 +9,10 @@ public partial class BulletAgeSystem : SystemBase
     {
         var deltaTime = Time.DeltaTime;
 
-        Entities.WithStructuralChanges().ForEach((Entity entity, ref ShootingComponent bullet) =>
+        Entities.WithStructuralChanges().ForEach((Entity entity, ref BulletAgeComponent bulletAge) =>
         {
-            bullet.age += deltaTime;
-            if(bullet.age > bullet.maxAge)
+            bulletAge.age += deltaTime;
+            if(bulletAge.age > bulletAge.maxAge)
             {
                 EntityManager.DestroyEntity(entity);
             }
