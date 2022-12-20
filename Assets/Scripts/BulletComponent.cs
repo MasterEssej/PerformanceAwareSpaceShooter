@@ -6,13 +6,13 @@ using Unity.Mathematics;
 
 [GenerateAuthoringComponent]
 public struct BulletComponent : IComponentData
-{/*
-    public BulletComponent(float speed)
+{
+    public BulletComponent(float speed, int damage)
     {
         this.speed = speed;
-        damage = 0;
+        this.damage = damage;
         direction = new float3(0, 0, 0);
-    }*/
+    }
 
     public int damage;
     public float speed;

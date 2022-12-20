@@ -34,8 +34,10 @@ public partial class ShootingSystem : SystemBase
             Translation newTranslation = new() { Value = spawnPos };
             EntityManager.SetComponentData<Translation>(bullet, newTranslation);
 
-            BulletComponent bulletData = new() { direction = newDirection, speed = 20, damage = 5 };
-            EntityManager.SetComponentData<BulletComponent>(bullet, bulletData);
+            var bulletData = GetComponent<BulletComponent>(bullet);
+            BulletComponent newBulletData = new() { direction = newDirection, speed = bulletData.speed, damage = bulletData.damage };
+            EntityManager.SetComponentData<BulletComponent>(bullet, newBulletData);
+            
         }
         
         Entities.ForEach((ref BulletComponent bulletComponent, ref Translation translation) =>

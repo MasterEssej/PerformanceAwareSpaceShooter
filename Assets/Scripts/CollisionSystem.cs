@@ -89,7 +89,6 @@ public partial class CollisionSystem : SystemBase
                 entityCommandBuffer.SetComponent<HealthComponent>(entityA, healthComponent);
 
                 entityCommandBuffer.DestroyEntity(entityB);
-
             }
 
             if (allPlayers.HasComponent(entityA) && allEnemies.HasComponent(entityB))
@@ -97,12 +96,22 @@ public partial class CollisionSystem : SystemBase
                 Debug.Log("player enemy collision");
 
                 var maxHealth = allHealth[entityA].maxHealth;
-                var newHealth = allHealth[entityA].currentHealth - 2;
+                var newHealth = allHealth[entityA].currentHealth - allEnemies[entityB].damage;
                 HealthComponent healthComponent = new HealthComponent { maxHealth = maxHealth, currentHealth = newHealth };
                 entityCommandBuffer.SetComponent<HealthComponent>(entityA, healthComponent);
 
                 entityCommandBuffer.DestroyEntity(entityB);
+            }
+            else if (allEnemies.HasComponent(entityB) && allPlayers.HasComponent(entityA))
+            {
+                Debug.Log("player enemy collision");
 
+                var maxHealth = allHealth[entityA].maxHealth;
+                var newHealth = allHealth[entityA].currentHealth - allEnemies[entityB].damage;
+                HealthComponent healthComponent = new HealthComponent { maxHealth = maxHealth, currentHealth = newHealth };
+                entityCommandBuffer.SetComponent<HealthComponent>(entityA, healthComponent);
+
+                entityCommandBuffer.DestroyEntity(entityB);
             }
 
         }
