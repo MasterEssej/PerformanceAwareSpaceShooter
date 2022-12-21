@@ -6,6 +6,7 @@ using Unity.Entities;
 
 public partial class HealthSystem : SystemBase
 {
+    
     protected override void OnUpdate()
     {
         Entities.WithStructuralChanges().ForEach((Entity entity, ref HealthComponent healthComponent) =>
@@ -15,7 +16,7 @@ public partial class HealthSystem : SystemBase
                 if(HasComponent<PlayerComponent>(entity))
                 {
                     Debug.Log("Lost");
-                    SceneManager.LoadScene("Menu");
+                    PlayerPrefs.SetInt("IsPlayerDead", 1);
                 }
                 else
                 {

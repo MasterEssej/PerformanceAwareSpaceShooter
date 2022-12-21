@@ -70,15 +70,20 @@ public partial class CollisionSystem : SystemBase
                 return;
             if (allPlayers.HasComponent(entityA) && allProjectiles.HasComponent(entityB))
                 return;
+
+
             /*
-            if (allProjectiles.HasComponent(entityA) && allEnemies.HasComponent(entityB))
+            if (allProjectiles.HasComponent(entityB) && allEnemies.HasComponent(entityA))
             {
-                Debug.Log("projectile destroyed");
-                entityCommandBuffer.DestroyEntity(entityA);
+                Debug.Log("projectile destroyed2");
+
+                var maxHealth = allHealth[entityA].maxHealth;
+                var newHealth = allHealth[entityA].currentHealth - allProjectiles[entityB].damage;
+                HealthComponent healthComponent = new HealthComponent { maxHealth = maxHealth, currentHealth = newHealth };
+                entityCommandBuffer.SetComponent<HealthComponent>(entityA, healthComponent);
+
                 entityCommandBuffer.DestroyEntity(entityB);
             }*/
-
-            
             if (allEnemies.HasComponent(entityA) && allProjectiles.HasComponent(entityB))
             {
                 Debug.Log("projectile destroyed2");

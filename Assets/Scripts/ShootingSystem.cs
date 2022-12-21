@@ -24,7 +24,7 @@ public partial class ShootingSystem : SystemBase
         float3 playerPos = EntityManager.GetComponentData<Translation>(_playerEntity).Value;
         Quaternion playerRot = EntityManager.GetComponentData<Rotation>(_playerEntity).Value;
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             var bullet = EntityManager.Instantiate(bulletPrefab);
             

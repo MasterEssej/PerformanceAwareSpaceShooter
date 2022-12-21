@@ -10,8 +10,6 @@ public partial class EnemySpawnSystem : SystemBase
 {
     private Entity _enemyPrefab;
     private Random _random;
-    private float3 _minPos = new float3(-20, -10, 0);
-    private float3 _maxPos = new float3(20, 10, 0);
 
 
     protected override void OnStartRunning()
@@ -27,9 +25,9 @@ public partial class EnemySpawnSystem : SystemBase
         var count = PlayerPrefs.GetInt("enemyCount");
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (count == 0)
+            if (count != -1)
             {
-                for (int n = 0; n < 10; n++)
+                for (int n = 0; n < 100; n++)
                 {
                     var newEnemy = EntityManager.Instantiate(_enemyPrefab);
 
@@ -38,14 +36,14 @@ public partial class EnemySpawnSystem : SystemBase
 
                     if (i == 0)
                     {
-                        float randX = _random.NextFloat(-20, 20);
-                        float randY = Mathf.Sign(_random.NextFloat(-1, 1)) * 10;
+                        float randX = _random.NextFloat(-30, 30);
+                        float randY = Mathf.Sign(_random.NextFloat(-1, 1)) * 15;
                         randPos = new float3(randX, randY, 0);
                     }
                     else
                     {
-                        float randX = Mathf.Sign(_random.NextFloat(-1, 1)) * 20;
-                        float randY = _random.NextFloat(-10, 10);
+                        float randX = Mathf.Sign(_random.NextFloat(-1, 1)) * 30;
+                        float randY = _random.NextFloat(-15, 15);
                         randPos = new float3(randX, randY, 0);
                     }
 
