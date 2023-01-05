@@ -46,5 +46,14 @@ public partial class ShootingSystem : SystemBase
         }).Schedule();
 
 
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Entities.WithAll<EnemyComponent>().ForEach((ref HealthComponent healthComponent) =>
+            {
+                healthComponent.currentHealth = 0;
+            }).Schedule();
+        }
+
+
     }
 }
