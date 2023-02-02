@@ -13,7 +13,7 @@ public partial class InputMovementSystem : SystemBase
         float deltaTime = Time.DeltaTime;
         int xMovement = 0;
         int yMovement = 0;
-        float rotationSpeed = 1f;
+        float rotationSpeed = 3f;
         float rotationDirection = 0f;
         
 
