@@ -26,7 +26,7 @@ public partial class EnemySpawnSystem : SystemBase
     protected override void OnUpdate()
     {
         var count = PlayerPrefs.GetInt("enemyCount");
-        if (Input.GetKeyDown(KeyCode.P)) { }
+        //if (Input.GetKeyDown(KeyCode.P)) { }
         if (count == 0)
         {
             enemyAmount *= enemyAmountMultiplier;
